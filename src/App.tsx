@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import Search from "./components/Search";
 import UserList from "./components/UserList";
 import { User } from "./types";

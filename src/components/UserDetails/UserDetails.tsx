@@ -1,4 +1,6 @@
-import { User } from "../types";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import { User } from "../../types";
 
 interface UserProps {
   user: User;
@@ -6,17 +8,17 @@ interface UserProps {
 
 export default function UserDetails({ user }: UserProps) {
   return (
-    <div className="user">
-      <div className="user__name">{user.name}</div>
-      <div className="user__username">
+    <ListItem>
+      <ListItemText className="user__name">{user.name}</ListItemText>
+      <ListItemText>
         <p>Username:</p>
         {user.username}
-      </div>
-      <div className="user__email">
+      </ListItemText>
+      <ListItemText>
         <p>E-mail:</p>
         {user.email}
-      </div>
-    </div>
+      </ListItemText>
+    </ListItem>
   );
 }
 
