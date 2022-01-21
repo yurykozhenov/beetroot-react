@@ -1,8 +1,8 @@
-import React from 'react';
-import './App.css';
-import Search from './components/Search';
-import UserList from './components/UserList';
-import { User } from './types';
+import React from "react";
+import "./App.css";
+import Search from "./components/Search";
+import UserList from "./components/UserList";
+import { User } from "./types";
 
 // interface AppState {
 //    users: User[]
@@ -16,7 +16,6 @@ import { User } from './types';
 //       }
 //    }
 
-
 //    render() {
 //       return <div>{this.state.users
 //          .map(user => <div>{user.name}</div>)}
@@ -25,42 +24,42 @@ import { User } from './types';
 // }
 
 function App() {
-  let [isLoaded, setLoad] = React.useState(false)
+  let [isLoaded, setLoad] = React.useState(false);
   let [items, setItems] = React.useState<User[]>([]);
-  let [inputValue, setValue] = React.useState('');
+  let [inputValue, setValue] = React.useState("");
   let [error, setError] = React.useState<Error | null>(null);
 
   React.useEffect(() => {
-     async function fetchData() {
+    async function fetchData() {
       try {
-         let response = await fetch("https://jsonplaceholder.typicode.com/users");
-         const users = await response.json();
-         setItems(users);
-      } catch(err) {
-         if (err instanceof Error) {
-            setError(err);
-         }
+        let response = await fetch(
+          "https://jsonplaceholder.typicode.com/users"
+        );
+        const users = await response.json();
+        setItems(users);
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err);
+        }
       } finally {
-         setLoad(true);
+        setLoad(true);
       }
-     }
+    }
 
-     fetchData();
+    fetchData();
   }, []);
 
-  if(error) {
-     return (
-        <div className="error-message">
-           Something went wrong.{}
-        </div>
-     )
-  } else if(!isLoaded) {
-     return <div>Loading...</div>
+  if (error) {
+    return <div className="error-message">Something went wrong.{}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
   } else {
-     return <div className="App">
-        <Search value={inputValue} checkChange={value => setValue(value)}/>
-        <UserList users={items} inputValue={inputValue}/>            
-     </div>
+    return (
+      <div className="App">
+        <Search value={inputValue} checkChange={(value) => setValue(value)} />
+        <UserList users={items} inputValue={inputValue} />
+      </div>
+    );
   }
 }
 
