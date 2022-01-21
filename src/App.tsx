@@ -28,7 +28,7 @@ function App() {
   let [isLoaded, setLoad] = React.useState(false)
   let [items, setItems] = React.useState<User[]>([]);
   let [inputValue, setValue] = React.useState('');
-  let [error, setError] = React.useState(null);
+  let [error, setError] = React.useState<Error | null>(null);
 
   React.useEffect(() => {
      async function fetchData() {
@@ -37,7 +37,9 @@ function App() {
          const users = await response.json();
          setItems(users);
       } catch(err) {
-         setError(err);
+         if (err instanceof Error) {
+            setError(err);
+         }
       } finally {
          setLoad(true);
       }
