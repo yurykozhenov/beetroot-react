@@ -1,7 +1,10 @@
 import React from "react";
-import Search from "./components/Search";
-import UserList from "./components/UserList";
+import Checkbox from "./components/Checkbox";
+import Search, { ErvinSearch, LeanneSearch } from "./components/Search";
+import UserList, { Container } from "./components/UserList";
+import { withUsers } from "./hoc/withUsers";
 import { User } from "./types";
+import { UserContext } from "./userContext";
 
 // interface AppState {
 //    users: User[]
@@ -22,44 +25,58 @@ import { User } from "./types";
 //    }
 // }
 
-function App() {
-  let [isLoaded, setLoad] = React.useState(false);
-  let [items, setItems] = React.useState<User[]>([]);
-  let [inputValue, setValue] = React.useState("");
-  let [error, setError] = React.useState<Error | null>(null);
+function App({ users }: { users: User[] }) {
+  const [isLoaded, setLoad] = React.useState(false);
+  // const [items, setItems] = React.useState<User[]>([]);
+  const [inputValue, setValue] = React.useState("");
+  const [checkboxValue, setCheckboxValue] = React.useState(false);
+  const [error, setError] = React.useState<Error | null>(null);
 
-  React.useEffect(() => {
-    async function fetchData() {
-      try {
-        let response = await fetch(
-          "https://jsonplaceholder.typicode.com/users"
-        );
-        const users = await response.json();
-        setItems(users);
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err);
-        }
-      } finally {
-        setLoad(true);
-      }
-    }
+  // React.useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       let response = await fetch(
+  //         "https://jsonplaceholder.typicode.com/users"
+  //       );
+  //       const users = await response.json();
+  //       setItems(users);
+  //     } catch (err) {
+  //       if (err instanceof Error) {
+  //         setError(err);
+  //       }
+  //     } finally {
+  //       setLoad(true);
+  //     }
+  //   }
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
-  if (error) {
-    return <div className="error-message">Something went wrong.{}</div>;
-  } else if (!isLoaded) {
-    return <div>Loading...</div>;
-  } else {
-    return (
-      <div className="App">
-        <Search value={inputValue} checkChange={(value) => setValue(value)} />
-        <UserList users={items} inputValue={inputValue} />
-      </div>
-    );
-  }
+  return (
+    <>
+      <UserContext.Provider value={{ users }}>
+        <div className="App">
+          <LeanneSearch
+            value={inputValue}
+            onChange={(value: string) => setValue(value)}
+            users={users}
+          />
+          <ErvinSearch
+            value={inputValue}
+            onChange={(value: any) => setValue(value)}
+          />
+          <Container>
+            <h1>Hello world</h1>
+            <Checkbox
+              value={checkboxValue}
+              onChange={(value: any) => setCheckboxValue(value)}
+            ></Checkbox>
+            <UserList inputValue={inputValue} users={users} />
+          </Container>
+        </div>
+      </UserContext.Provider>
+    </>
+  );
 }
 
-export default App;
+export default withUsers(App);

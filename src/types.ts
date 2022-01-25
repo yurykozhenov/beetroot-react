@@ -4,3 +4,8 @@ export interface User {
   username: string;
   email: string;
 }
+
+export interface FormElementProps<T> {
+  value: T;
+  onChange: (value: T) => unknown;
+}
