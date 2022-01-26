@@ -1,8 +1,9 @@
 import React from "react";
 import Checkbox from "./components/Checkbox";
 import Search, { ErvinSearch, LeanneSearch } from "./components/Search";
+import { default as UserComponent } from "./components/User";
 import UserList, { Container } from "./components/UserList";
-import { withUsers } from "./hoc/withUsers";
+import { withUsers } from "./hocs/withUsers";
 import { User } from "./types";
 import { UserContext } from "./userContext";
 
@@ -54,7 +55,8 @@ function App({ users }: { users: User[] }) {
 
   return (
     <>
-      <UserContext.Provider value={{ users }}>
+      <UserComponent></UserComponent>
+      {/* <UserContext.Provider value={{ users }}>
         <div className="App">
           <LeanneSearch
             value={inputValue}
@@ -74,7 +76,7 @@ function App({ users }: { users: User[] }) {
             <UserList inputValue={inputValue} users={users} />
           </Container>
         </div>
-      </UserContext.Provider>
+      </UserContext.Provider> */}
     </>
   );
 }

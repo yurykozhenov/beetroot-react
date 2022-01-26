@@ -10,27 +10,20 @@ interface UserProps {
 
 export default function UserDetails({ user }: UserProps) {
   const { users } = React.useContext(UserContext);
+  console.log(users);
 
   return (
-    <UserContext.Consumer>
-      {({ users }) => {
-        console.log(users);
-
-        return (
-          <ListItem>
-            <ListItemText className="user__name">{user.name}</ListItemText>
-            <ListItemText>
-              <p>Username:</p>
-              {user.username}
-            </ListItemText>
-            <ListItemText>
-              <p>E-mail:</p>
-              {user.email}
-            </ListItemText>
-          </ListItem>
-        );
-      }}
-    </UserContext.Consumer>
+    <ListItem>
+      <ListItemText className="user__name">{user.name}</ListItemText>
+      <ListItemText>
+        <p>Username:</p>
+        {user.username}
+      </ListItemText>
+      <ListItemText>
+        <p>E-mail:</p>
+        {user.email}
+      </ListItemText>
+    </ListItem>
   );
 }
 

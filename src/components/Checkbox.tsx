@@ -1,5 +1,5 @@
 import { FormElementProps } from "../types";
-import { withLogger } from "../hoc/withLogger";
+import { withLogger } from "../hocs/withLogger";
 
 function Checkbox({ value, onChange }: FormElementProps<boolean>) {
   // function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
