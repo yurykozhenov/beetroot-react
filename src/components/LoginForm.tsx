@@ -1,8 +1,12 @@
 import React from "react";
 // import useForm from "../hooks/useForm";
-import withHookForm from "../hocs/withHookForm";
+import withHookForm, { WithHookFormProps } from "../hocs/withHookForm";
 
-function LoginForm({ formState, handleChange, submit }) {
+function LoginForm({
+  formState,
+  handleChange,
+  submit,
+}: WithHookFormProps<{ email: string; password: string }>) {
   // const { formState, handleChange, submit } = useForm(props, {
   //   email: "",
   //   password: "",

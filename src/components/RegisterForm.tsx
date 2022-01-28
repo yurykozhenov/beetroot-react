@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import FormHook from "../examples/example_render_props/FormHook";
 import useToggled from "../hooks/useToggled";
 // import useForm from "../hooks/useForm";
-import FormHook from "./FormHook";
 
 function RegisterForm(props) {
   // const { formState, handleChange, submit } = useForm(props, {

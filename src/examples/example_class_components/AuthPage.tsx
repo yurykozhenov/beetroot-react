@@ -1,10 +1,10 @@
 import React from "react";
 import RegisterForm from "./RegisterForm";
 import LoginForm from "./LoginForm";
-import withToggle from "../../hocs/withToggle";
+import withToggle, { WithToggleProps } from "../../hocs/withToggle";
 
-class User extends React.Component {
-  submit = (value) => {
+class AuthPage extends React.Component<WithToggleProps> {
+  submit = (value: any) => {
     console.log(value);
   };
 
@@ -40,4 +40,4 @@ class User extends React.Component {
   }
 }
 
-export default withToggle(User, false);
+export default withToggle(AuthPage, false);

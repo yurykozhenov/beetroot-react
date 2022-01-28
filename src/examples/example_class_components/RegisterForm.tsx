@@ -1,15 +1,25 @@
-import React, { Component } from "react";
-import withForm from "../../hocs/withForm";
+import React from "react";
+// import withForm from "../../hocs/withForm";
 import withToggle from "../../hocs/withToggle";
-import Form from "./Form";
+import Form from "../example_render_props/Form";
 
-class RegisterForm extends Component {
+interface RegisterFormProps {
+  isToggled: boolean;
+  handleToggled: (value: React.ChangeEvent<HTMLInputElement>) => void;
+  submit: (e: unknown) => void;
+}
+
+class RegisterForm extends React.Component<RegisterFormProps> {
   render() {
     // const { login, email, password } = this.props.formState;
     const { isToggled, handleToggled } = this.props;
 
     return (
-      <Form
+      <Form<{
+        login: string;
+        email: string;
+        password: string;
+      }>
         initialState={{
           login: "",
           email: "",

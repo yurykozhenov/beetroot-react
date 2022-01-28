@@ -1,8 +1,7 @@
 import React from "react";
-import { FormElementProps } from "../types";
 
-export function withLogger(
-  WrappedComponent: any,
+export function withLogger<P>(
+  WrappedComponent: React.ComponentType<P>,
   valueChange?: (value: any) => any
 ) {
   return class extends React.Component<any> {
@@ -16,7 +15,7 @@ export function withLogger(
 
       return (
         <WrappedComponent
-          {...this.props}
+          {...(this.props as P)}
           value={value}
           onChange={this.onChange}
         ></WrappedComponent>

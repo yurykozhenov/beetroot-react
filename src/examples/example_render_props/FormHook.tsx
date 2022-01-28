@@ -1,8 +1,8 @@
-import useForm from "../hooks/useForm";
+import useForm from "../../hooks/useForm";
 
 export default function FormHook(props) {
   const { formState, handleChange, submit } = useForm(
-    props,
+    props.submit,
     props.initialState
   );
 

@@ -1,7 +1,13 @@
-import React, { Component } from "react";
-import withForm from "../../hocs/withForm";
+import React from "react";
+import withForm, { WithFormProps } from "../../hocs/withForm";
 
-class LoginForm extends Component {
+interface LoginFormProps
+  extends WithFormProps<{
+    email: string;
+    password: string;
+  }> {}
+
+class LoginForm extends React.Component<LoginFormProps> {
   render() {
     const { email, password } = this.props.formState;
     const { handleChange, submit } = this.props;

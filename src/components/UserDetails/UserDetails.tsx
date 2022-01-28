@@ -2,7 +2,7 @@ import React from "react";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { User } from "../../types";
-import { UserContext } from "../../userContext";
+import { UserContext } from "../../context/UserContext";
 
 interface UserProps {
   user: User;
