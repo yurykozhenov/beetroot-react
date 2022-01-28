@@ -1,7 +1,6 @@
 import React from "react";
 import { FormElementProps, User } from "../types";
 import { withLogger } from "../examples/example_hocs/withLogger";
-import { withUsers } from "../hocs/withUsers";
 
 interface SearchWithUserProps extends FormElementProps<string> {
   users: User[];

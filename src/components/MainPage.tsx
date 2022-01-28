@@ -1,10 +1,13 @@
 import Checkbox from "@mui/material/Checkbox";
+import React from "react";
 import { useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import { withUsers } from "../hocs/withUsers";
 import { User } from "../types";
-import Search from "./Search";
+// import Search from "./Search";
 import UserList, { Container } from "./UserList";
+
+const Search = React.lazy(() => import("./Search"));
 
 function MainPage({ users }: { users: User[] }) {
   const [isLoaded, setLoad] = useState(false);
