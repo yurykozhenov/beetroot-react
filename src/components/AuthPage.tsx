@@ -2,13 +2,13 @@ import RegisterForm from "./RegisterForm";
 import LoginForm from "./LoginForm";
 import useToggled from "../hooks/useToggled";
 import { AppContext } from "../context/AppContext";
-import { useContext } from "react";
+import React, { useContext } from "react";
 
 export default function AuthPage() {
   const [isRegister, handleRegister] = useToggled(false);
   const { showMain, setShowMain } = useContext(AppContext);
 
-  const submit = (value) => {
+  const submit = (value: unknown) => {
     console.log(value);
     setShowMain(showMain);
   };

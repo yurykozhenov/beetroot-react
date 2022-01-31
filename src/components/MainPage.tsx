@@ -2,19 +2,17 @@ import Checkbox from "@mui/material/Checkbox";
 import React from "react";
 import { useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
-import { withUsers } from "../hocs/withUsers";
 import { User } from "../types";
-// import Search from "./Search";
 import UserList, { Container } from "./UserList";
 
 const Search = React.lazy(() => import("./Search"));
 
-function MainPage({ users }: { users: User[] }) {
+function MainPage() {
   const [isLoaded, setLoad] = useState(false);
-  const [items, setItems] = useState<User[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [inputValue, setValue] = useState("");
   const [checkboxValue, setCheckboxValue] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<Error>();
 
   useEffect(() => {
     async function fetchData() {
@@ -23,7 +21,7 @@ function MainPage({ users }: { users: User[] }) {
           "https://jsonplaceholder.typicode.com/users"
         );
         const users = await response.json();
-        setItems(users);
+        setUsers(users);
       } catch (err) {
         if (err instanceof Error) {
           setError(err);
@@ -37,7 +35,7 @@ function MainPage({ users }: { users: User[] }) {
   }, []);
 
   return (
-    <UserContext.Provider value={{ users }}>
+    <UserContext.Provider value={{ users, isLoaded, error }}>
       <div className="App">
         <Search
           value={inputValue}
@@ -57,4 +55,4 @@ function MainPage({ users }: { users: User[] }) {
   );
 }
 
-export default withUsers(MainPage);
+export default MainPage;

@@ -1,7 +1,7 @@
 import useToggled from "../hooks/useToggled";
 import useForm from "../hooks/useForm";
 
-function RegisterForm(props) {
+function RegisterForm(props: any) {
   const { formState, handleChange, submit } = useForm(props.submit, {
     login: "",
     email: "",
