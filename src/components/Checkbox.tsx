@@ -20,4 +20,4 @@ function Checkbox({ value, onChange }: FormElementProps<boolean>) {
   );
 }
 
-export default withLogger(Checkbox);
+export default withLogger<boolean, FormElementProps<boolean>>(Checkbox);

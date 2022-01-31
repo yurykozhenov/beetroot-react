@@ -1,11 +1,16 @@
 import React from "react";
 
-export function withLogger<P>(
+interface WithLoggerProps<T> {
+  onChange: (value: T) => void;
+  value: T;
+}
+
+export function withLogger<T, P extends WithLoggerProps<T>>(
   WrappedComponent: React.ComponentType<P>,
-  valueChange?: (value: any) => any
+  valueChange?: (value: T) => T
 ) {
-  return class extends React.Component<any> {
-    onChange = (value: unknown) => {
+  return class extends React.Component<P> {
+    onChange: WithLoggerProps<T>["onChange"] = (value) => {
       console.log(value);
       this.props.onChange(value);
     };

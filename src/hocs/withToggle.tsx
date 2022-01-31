@@ -5,11 +5,11 @@ export interface WithToggleProps {
   handleToggled: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function withToggle<P>(
+export default function withToggle<P extends WithToggleProps>(
   WrappedComponent: React.ComponentType<P>,
   initialState = false
 ) {
-  return class extends React.Component<any> {
+  return class extends React.Component<Omit<P, keyof WithToggleProps>> {
     state = {
       isToggled: initialState,
     };

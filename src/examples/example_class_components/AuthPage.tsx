@@ -4,7 +4,7 @@ import LoginForm from "./LoginForm";
 import withToggle, { WithToggleProps } from "../../hocs/withToggle";
 
 class AuthPage extends React.Component<WithToggleProps> {
-  submit = (value: any) => {
+  submit = (value: unknown) => {
     console.log(value);
   };
 

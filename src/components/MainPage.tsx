@@ -1,4 +1,3 @@
-import Checkbox from "@mui/material/Checkbox";
 import React from "react";
 import { useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
@@ -11,7 +10,6 @@ function MainPage() {
   const [isLoaded, setLoad] = useState(false);
   const [users, setUsers] = useState<User[]>([]);
   const [inputValue, setValue] = useState("");
-  const [checkboxValue, setCheckboxValue] = useState(false);
   const [error, setError] = useState<Error>();
 
   useEffect(() => {
@@ -44,10 +42,6 @@ function MainPage() {
         />
         <Container>
           <h1>Hello world</h1>
-          <Checkbox
-            value={checkboxValue}
-            onChange={(value: any) => setCheckboxValue(value)}
-          ></Checkbox>
           <UserList inputValue={inputValue} users={users} />
         </Container>
       </div>

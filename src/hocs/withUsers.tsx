@@ -1,7 +1,14 @@
 import React from "react";
+import { User } from "../types";
 
-export function withUsers(WrappedComponent: any) {
-  return class extends React.Component<any> {
+interface WithUsersProps {
+  users: User[];
+}
+
+export function withUsers<P extends WithUsersProps>(
+  WrappedComponent: React.ComponentType<P>
+) {
+  return class extends React.Component<Omit<P, keyof WithUsersProps>> {
     state = {
       users: [],
     };
@@ -19,7 +26,7 @@ export function withUsers(WrappedComponent: any) {
     render() {
       return (
         <WrappedComponent
-          {...this.props}
+          {...(this.props as P)}
           users={this.state.users}
         ></WrappedComponent>
       );

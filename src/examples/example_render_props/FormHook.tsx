@@ -1,14 +1,25 @@
+import React from "react";
 import useForm from "../../hooks/useForm";
 
-export default function FormHook(props: any) {
+interface FormHookProps<T> {
+  submit: (values: T) => void;
+  initialState: T;
+  children: (renderProps: {
+    formState: T;
+    handleChange: React.ChangeEventHandler<HTMLInputElement>;
+    submit: (e: React.SyntheticEvent) => void;
+  }) => React.ReactNode;
+}
+
+export default function FormHook<T>(props: FormHookProps<T>) {
   const { formState, handleChange, submit } = useForm(
     props.submit,
     props.initialState
   );
 
   return props.children({
-    formState: formState,
-    handleChange: handleChange,
-    submit: submit,
+    formState,
+    handleChange,
+    submit,
   });
 }

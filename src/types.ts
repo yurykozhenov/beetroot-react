@@ -7,5 +7,5 @@ export interface User {
 
 export interface FormElementProps<T> {
   value: T;
-  onChange: (value: T) => unknown;
+  onChange: (value: T) => void;
 }
